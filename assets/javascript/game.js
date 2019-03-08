@@ -1,52 +1,45 @@
 
-var lettersList = ["a", "b", "c", "d", "e", "f", "g"]
+var lettersList = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var wins = 0;
 var losses = 0;
 var guessLeft = 10;
+var userLetters= [];
 
-var userChoiceText = document.getElementById("userguess-text");
-var psychicText = document.getElementById("psychic-text");
+var lettersListRand = lettersList[Math.floor(Math.random() * lettersList.length)];
+
 var winsText = document.getElementById("userwins-text");
 var loseText = document.getElementById("losses-text");
 var guessesText = document.getElementById("guesses-left");
-
-
+var guessedLetters = document.getElementById("guessed-letters");
 
 document.onkeyup = function (event) {
     var userGuess = event.key;
-
-    var lettersListRand = lettersList[Math.floor(Math.random() * lettersList.length)];
-
     var lowerCaseGuess = userGuess.toLowerCase();
 
-    if (lettersList.indexOf(lowerCaseGuess) === -1) {
-        alert("please choose a letter between a-g! You lost :(")
-    }
+    function addUserInput() {
+        userLetters.push(" " + userGuess);
+        return userLetters;}
+
     if (lowerCaseGuess === lettersListRand) {
         wins++;
-        guessLeft = 10;
+        beginGameAgain();
     }
-    else if (guessLeft === 0) {
-        alert("Game Over. Press any key to play again!")
-        guessLeft = 10;
-        wins = 0;
-        losses = 0;
+    if (guessLeft === 0) {
+        losses++;  
+        beginGameAgain();   
     }
     else {
-        losses++;
         guessLeft--;
     }
 
-
-    userChoiceText.textContent = newFunction() + userGuess;
-
-    psychicText.textContent = "The letter was: " + lettersListRand;
     winsText.textContent = "Wins: " + wins;
     loseText.textContent = "Losses: " + losses;
     guessesText.textContent = "Guesses Left: " + guessLeft;
-
+    guessedLetters.textContent = "You Guessed:" + addUserInput();
 };
 
-function newFunction() {
-    return "You guessed: ";
+function beginGameAgain() {
+    guessLeft = 10;
+    userLetters= [];
+    lettersListRand = lettersList[Math.floor(Math.random() * lettersList.length)];
 }
