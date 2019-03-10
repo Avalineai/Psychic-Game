@@ -1,4 +1,4 @@
-#trythis {
+#wordcolor {
     color: #ff6600;
 }
 
@@ -12,4 +12,20 @@
 
 #columnBorder {
     border: 5px solid red;
+}
+
+h2 {
+    animation: color-change 5s infinite;
+}
+@keyframes color-change {
+    0% { color: #e6001a}
+    20% { color: #bf0040}
+    30% { color: #a60059}
+    40% { color: #800080}
+    50% { color: #660099}
+    60% { color: #4d00b2}
+    70% { color: #2600d9}
+    80% { color: #4000bf}
+    90% { color: #990066}
+    100% { color: #e6001a }
 }
